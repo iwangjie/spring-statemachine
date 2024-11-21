@@ -5,10 +5,31 @@ plugins {
 
 description = 'Spring Statemachine'
 
+tasks.withType(JavaCompile).configureEach {
+	options.compilerArgs << "-Xlint:-dep-ann"
+}
+
+
 repositories {
-	maven { url 'https://repo.spring.io/snapshot' }
-	maven { url 'https://repo.spring.io/milestone' }
-	maven { url 'https://repo.spring.io/release' }
+	maven {
+		url 'https://maven.aliyun.com/repository/public'
+	}
+	maven {
+		url 'https://maven.aliyun.com/repository/central'
+	}
+	maven {
+		url 'https://maven.aliyun.com/repository/spring'
+	}
+	// 如果需要，可以添加其他阿里云镜像仓库
+	maven {
+		url 'https://maven.aliyun.com/repository/spring-plugin'
+	}
+	maven {
+		url 'https://maven.aliyun.com/repository/gradle-plugin'
+	}
+	maven {
+		url 'https://maven.aliyun.com/repository/google'
+	}
 	mavenCentral()
 }
 
@@ -16,14 +37,26 @@ allprojects {
 	group = 'org.springframework.statemachine'
 
 	repositories {
+		maven {
+			url 'https://maven.aliyun.com/repository/public'
+		}
+		maven {
+			url 'https://maven.aliyun.com/repository/central'
+		}
+		maven {
+			url 'https://maven.aliyun.com/repository/spring'
+		}
+		// 如果需要，可以添加其他阿里云镜像仓库
+		maven {
+			url 'https://maven.aliyun.com/repository/spring-plugin'
+		}
+		maven {
+			url 'https://maven.aliyun.com/repository/gradle-plugin'
+		}
+		maven {
+			url 'https://maven.aliyun.com/repository/google'
+		}
 		mavenCentral()
-		maven { url 'https://repo.spring.io/release' }
-		if (version.contains('-')) {
-			maven { url "https://repo.spring.io/milestone" }
-		}
-		if (version.endsWith('-SNAPSHOT')) {
-			maven { url "https://repo.spring.io/snapshot" }
-		}
 	}
 
 	configurations.all {
